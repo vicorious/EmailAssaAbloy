@@ -1,0 +1,158 @@
+spring:
+  application:
+    name: qacomerssia
+  profiles:
+    active: ${MERCADOLIBREQAD_APP_PROFILE:development}
+
+# Logger configuration
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    '[org.springframework]': info
+    '[org.hibernate]': info
+    '[com.yale]': info
+
+management:
+  endpoints:
+    web:
+      exposure.include: beans, env, health, info, metrics, mappings
+  endpoint:
+    health:
+      show-details: always
+
+---
+
+server:
+  port: ${MERCADOLIBREQAD_APP_PORT:8081}
+
+spring:
+  profiles: development
+ 
+  # Database
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: FabricaTest
+    password: F4br1c42o22
+    url: jdbc:sqlserver://10.205.16.184:1433;database=Integraciones;loginTimeout=30;
+    #url: jdbc:sqlserver://localhost:1433;database=assaabloy;loginTimeout=30;integratedSecurity=true
+    initialization-mode: always
+    continue-on-error: true
+  # Database
+  datasource2:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: ${MERCADOLIBREQAD_DB_USERNAME}
+    password: ${MERCADOLIBREQAD_DB_PASSWORD}
+    url: jdbc:sqlserver://${MERCADOLIBREQAD_DB_HOST}:${MERCADOLIBREQAD_DB_PORT};database=${MERCADOLIBREQAD_DB_NAME};loginTimeout=30;
+    initialization-mode: always
+    continue-on-error: true
+  # JPA properties
+  jpa:
+    show-sql: false
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          timezone: ${MERCADOLIBREQAD_DB_TIMEZONE}
+        hbm2ddl:
+          '[import_files_sql_extractor]': org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+  rabbitmq:
+    host: ${DEV_BUS_HOST}
+    port: ${DEV_BUS_PORT}
+    username: ${DEV_BUS_USERNAME}
+    password: ${DEV_BUS_PASSWORD}
+    template:
+      retry:
+        initial-interval: 1000ms
+        max-attempts: 3
+        max-interval: 10000ms
+        multiplier: 1
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: enslavement32@gmail.com
+    password: bbilxaaatitzxbok
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+        auth: true
+        connectiontimeout: 5000
+        timeout: 5000
+        writetimeout: 5000
+        starttls.enable: true
+        starttls.required: true
+  #mail:
+    #host: relay.assaabloy.net
+    #port: 25
+    #username: noresponder@assaabloy.com 
+    #password: Mx42Nbf7A6Hoz3YZi58R
+    #protocol: smtp
+    #tls: true
+    #properties.mail.smtp:
+        #auth: true
+        #connectiontimeout: 5000
+        #timeout: 5000
+        #writetimeout: 5000
+        #starttls.enable: true
+        #starttls.required: true
+
+bus:
+  exchange_name: ${DEV_BUS_EXCHANGE_NAME}
+  clientes:
+    queue_name: ${DEV_BUS_CLIENTES_QUEUE_NAME}
+    routing_key: ${DEV_BUS_CLIENTES_ROUTING_KEY}
+  pedidos:
+    queue_name: ${DEV_BUS_PEDIDOS_QUEUE_NAME}
+    routing_key: ${DEV_BUS_PEDIDOS_ROUTING_KEY}
+
+---
+
+server:
+  port: ${MERCADOLIBREQAD_APP_PORT:8081}
+
+spring:
+  profiles: production
+ 
+  # Database
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: ${MERCADOLIBREQAD_DB_USERNAME}
+    password: ${MERCADOLIBREQAD_DB_PASSWORD}
+    url: jdbc:sqlserver://${MERCADOLIBREQAD_DB_HOST}:${MERCADOLIBREQAD_DB_PORT};database=${MERCADOLIBREQAD_DB_NAME};loginTimeout=30;
+    initialization-mode: never
+    continue-on-error: true
+  # JPA properties
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          timezone: ${MERCADOLIBREQAD_DB_TIMEZONE}
+        hbm2ddl:
+          '[import_files_sql_extractor]': org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+  rabbitmq:
+    host: ${BUS_HOST}
+    port: ${BUS_PORT}
+    username: ${BUS_USERNAME}
+    password: ${BUS_PASSWORD}
+    template:
+      retry:
+        initial-interval: 1000ms
+        max-attempts: 3
+        max-interval: 10000ms
+        multiplier: 1
+
+
+bus:
+  exchange_name: ${BUS_EXCHANGE_NAME}
+  clientes:
+    queue_name: ${BUS_CLIENTES_QUEUE_NAME}
+    routing_key: ${BUS_CLIENTES_ROUTING_KEY}
+  pedidos:
+    queue_name: ${BUS_PEDIDOS_QUEUE_NAME}
+    routing_key: ${BUS_PEDIDOS_ROUTING_KEY}

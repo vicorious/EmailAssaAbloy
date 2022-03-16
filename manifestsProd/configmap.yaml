@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mercadolibreqad-config
+  
+  labels:
+    app: tcc
+data:
+  MERCADOLIBREQAD_APP_PROFILE: production
+  MERCADOLIBREQAD_APP_PORT : '8080'
+  MERCADOLIBREQAD_DB_HOST : 10.205.16.184
+  MERCADOLIBREQAD_DB_NAME : integración
+  MERCADOLIBREQAD_DB_PORT : '1433'
+  MERCADOLIBREQAD_DB_TIMEZONE : America/Bogota
+
