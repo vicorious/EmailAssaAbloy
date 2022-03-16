@@ -9,22 +9,22 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import java.io.Serializable;
-@Entity(name="Email")
+@Entity(name="Notificaciones")
 public class Email implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "n_Id")
     private Integer id;
-    @Column(name = "email")
+    @Column(name = "n_Destinatario")
     private String email;
-    @Column(name = "content")
+    @Column(name = "n_Contenido")
     private String content;
-    @Column(name = "subject")
+    @Column(name = "n_Asunto")
     private String subject;
-    @Column(name = "cc")
+    @Column(name = "n_Copia")
     private String cc;
-    @Column(name = "from")
+    @Column(name = "n_Origen")
     private String from;
 
 

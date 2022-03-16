@@ -2,31 +2,18 @@ package com.example.springboot.utils;
 
 
 public class Constantes {
-    public static String                                                                                                                                                    URL_TG_TOKEN = "http://auth.mercadolibre.com.co/authorization";
-    public static String URL_ACCESS_TOKEN = "https://api.mercadolibre.com/oauth/token";
+    public static String COMERSSIA_EMAIL_DONE = "Asunto: “ESTADO” Orden de traslado N°:%s Origen: %s    Destino: %s.\n" +
+            "\n" +
+            "Cuerpo del correo:\n" +
+            "Se informa que el día de hoy %s se ha generado un despacho con los siguientes resultados:\n" +
+            "número de orden de traslado: %s, desde %s, con destino %s, \n" +
+            "con las siguientes características:";
 
-    public static String URL_ORDERS_SEARCH = "https://api.mercadolibre.com/orders/search";
-    public static String URL_SHIPPING = "https://api.mercadolibre.com/shipments/SHIPMENT_ID";
-    public static String URL_SHIPPING_REPORT = "https://api.mercadolibre.com/shipment_labels?shipment_ids=SHIPPING_ID&response_type=pdf";
-    public static String URL_ORDERS_BILLING_INFO = "https://api.mercadolibre.com/orders/ORDER_ID/billing_info";
-    public static String URL_ORDERS_DATA = "https://api.mercadolibre.com/orders/ORDER_ID";
-
-    public static String APP_ID = "3131682209175303";
-    public static String REDIRECT_URI = "https://tiendaonline.yalecolombia.com";
-    public static String CLIENT_SECRET = "Png3Li5sd7CRgIwftHvtFmMG0w8UYYYx";
-    public static String RESPONSE_TYPE = "code";
-
-    public static String GRANT_TYPE = "authorization_code";
-    public static String GRANT_REFRESH_TYPE = "refresh_token";
-
-    public static String SELLER = "268091189";
+    public static String COMERSSIA_EMAIL_FAILED = "Asunto: “ESTADO” Orden de traslado N°:%s Origen: %s    \n" +
+            "Cuerpo del correo:\n" +
+            "Se informa que el día de hoy %s se ha generado un ERROR (%s) con orden de traslado: xxxxxxxxxxxxx, desde xxxxxxx, con destino xxxxxxxx.\n" +
+            "con las siguientes características:";
 
 
-    public static String DOMAIN = "cerracol";
-
-    public static String ENVIADA = "Enviada";
-    public static String RECIBIDA = "Recibida";
-
-    public static String FILE_TG = "src/resources/previousToken.txt";
     
 }

@@ -10,7 +10,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
-import java.util.List;
 
 @Service
 public class EmailService implements EmailPort{
@@ -29,13 +28,8 @@ public class EmailService implements EmailPort{
     }
 
     @Override
-    public List<Email> mails() throws Exception {
-        return (List<Email>) this.emailRepository.findAll();
-    }
-
-    @Override
     public void sendComerssiaEmail(EmailBody emailBody)  {
-
+        send(emailBody.getContent(),emailBody.getEmail(), emailBody.getSubject(), emailBody.getCc());
 
     }
 

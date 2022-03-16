@@ -9,5 +9,7 @@ public interface EmailPort {
 
     List<Email> mails() throws Exception;
 
-    void sendComerssiaEmail(EmailBody emailBody);
+    void sendComerssiaEmail(EmailBody emailBody) throws Exception;
+
+    void sendFailedComerssiaEmail(EmailBody emailBody) throws Exception;
 }

@@ -6,12 +6,22 @@ public class EmailBody {
         private String cc;
         private String content;
         private String subject;
+        private String origen;
 
-    public EmailBody(String email, String cc, String content, String subject) {
+    public EmailBody(String email, String cc, String content, String subject, String origen) {
         this.email = email;
         this.cc = cc;
         this.content = content;
         this.subject = subject;
+        this.origen = origen;
+    }
+
+    public String getOrigen() {
+        return origen;
+    }
+
+    public void setOrigen(String origen) {
+        this.origen = origen;
     }
 
     public String getCc() {

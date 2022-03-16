@@ -16,13 +16,35 @@ public class EmailRest {
 
     @PostMapping(value = "/notificaciones")
     @ResponseBody
-    public String SendEmail(@RequestBody EmailBody emailBody)  {
+    public String sendEmail(@RequestBody EmailBody emailBody)  {
         try {
             this.emailPort.sendEmail(emailBody);
         }catch(Exception ex)
         {
             emailBody.setContent(ex.getMessage());
+            try {
+                this.emailPort.sendComerssiaEmail(emailBody);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "FAIL";
+        }
+        return "OK";
+    }
+
+    @PostMapping(value = "/comerssianotificaciones")
+    @ResponseBody
+    public String comerssiaNotificaciones(@RequestBody EmailBody emailBody)  {
+        try {
             this.emailPort.sendComerssiaEmail(emailBody);
+        }catch(Exception ex)
+        {
+            emailBody.setContent(ex.getMessage());
+            try {
+                this.emailPort.sendFailedComerssiaEmail(emailBody);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return "FAIL";
         }
         return "OK";
