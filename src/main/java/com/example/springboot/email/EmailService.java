@@ -31,7 +31,7 @@ public class EmailService implements EmailPort{
 
     @Override
     public List<Email> mails() throws Exception {
-        return null;
+        return (List<Email>) this.emailRepository.findAll();
     }
 
     @Override
