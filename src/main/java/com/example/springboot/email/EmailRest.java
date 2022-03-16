@@ -14,6 +14,11 @@ public class EmailRest {
     @Autowired
     private EmailPort emailPort;
 
+    /**
+     * 
+     * @param emailBody
+     * @return
+     */
     @PostMapping(value = "/notificaciones")
     @ResponseBody
     public String sendEmail(@RequestBody EmailBody emailBody)  {
@@ -23,7 +28,7 @@ public class EmailRest {
         {
             emailBody.setContent(ex.getMessage());
             try {
-                this.emailPort.sendComerssiaEmail(emailBody);
+                this.emailPort.sendEmail(emailBody);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -32,6 +37,11 @@ public class EmailRest {
         return "OK";
     }
 
+    /**
+     * 
+     * @param emailBody
+     * @return
+     */
     @PostMapping(value = "/comerssianotificaciones")
     @ResponseBody
     public String comerssiaNotificaciones(@RequestBody EmailBody emailBody)  {
@@ -50,6 +60,10 @@ public class EmailRest {
         return "OK";
     }
 
+    /**
+     * 
+     * @return
+     */
     @PostMapping(value = "/mails")
     @ResponseBody
     public String mails()  {
