@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7e07714-91e5-46c1-857e-931e7c307337" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/HelloController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/dto/AccessToken.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/dto/CustomResponse.java" beforeDir="false" />
@@ -28,6 +29,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/dto/response/shipping/data/Neighborhood.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/dto/response/shipping/data/ReceiverAddress.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/dto/response/shipping/data/State.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/email/EmailPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/springboot/email/EmailPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/email/EmailRest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/springboot/email/EmailRest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/email/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/springboot/email/EmailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/entity/DefinitivasCuentas.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/entity/IntegracionBoomiCuentas.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/entity/IntegracionBoomiOVEncabezado.java" beforeDir="false" />
@@ -42,6 +46,13 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/repository/IntegrationBoomiOVDetalleRepository.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/repository/IntegrationBoomiOVEncabezadoRepository.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/utils/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/springboot/utils/Constantes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/springboot/email/EmailPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/email/EmailPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/springboot/email/EmailRest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/springboot/email/EmailService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/mercadolibreqad-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/mercadolibreqad-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

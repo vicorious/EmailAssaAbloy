@@ -18,11 +18,25 @@ public class EmailRest {
     @ResponseBody
     public String SendEmail(@RequestBody EmailBody emailBody)  {
         try {
-            emailPort.sendEmail(emailBody);
+            this.emailPort.sendEmail(emailBody);
         }catch(Exception ex)
         {
             emailBody.setContent(ex.getMessage());
             this.emailPort.sendComerssiaEmail(emailBody);
+            return "FAIL";
+        }
+        return "OK";
+    }
+
+    @PostMapping(value = "/mails")
+    @ResponseBody
+    public String mails()  {
+        try {
+            this.emailPort.mails();
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return "FAIL";
         }
         return "OK";
     }
