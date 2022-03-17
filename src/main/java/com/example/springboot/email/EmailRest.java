@@ -1,12 +1,19 @@
 package com.example.springboot.email;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
 @RequestMapping(value = "/comerssia")
 public class EmailRest {
@@ -64,17 +71,14 @@ public class EmailRest {
      * 
      * @return
      */
-    @PostMapping(value = "/mails")
-    @ResponseBody
-    public String mails()  {
-        try {
-            this.emailPort.mails();
-        }catch(Exception ex)
-        {
-            ex.printStackTrace();
-            return "FAIL";
+    @GetMapping(value = "/mails")
+    public ResponseEntity<?> ListarEmails(@RequestParam String origen,Pageable pageable){
+        try {        	
+        	String from = "%"+origen+"%";        	
+            return new ResponseEntity<>(this.emailPort.listarEmail(from,pageable), HttpStatus.OK);
+        } catch (Exception error){
+            return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
         }
-        return "OK";
     }
 
 }

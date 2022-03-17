@@ -1,0 +1,70 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: mercadolibreqad
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mercadolibreqad
+  template:
+    metadata:
+      labels:
+        app: mercadolibreqad
+    spec:
+      containers:
+        - name: mercadolibreqad
+          image: assaabloy.azurecr.io/mercadolibreqad
+          ports:
+            - containerPort: 8080
+
+          env:
+            - name: MERCADOLIBREQAD_APP_PROFILE
+              valueFrom:
+                configMapKeyRef:
+                  name: mercadolibreqad-config
+                  key: MERCADOLIBREQAD_APP_PROFILE
+
+            - name: MERCADOLIBREQAD_APP_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: mercadolibreqad-config
+                  key: MERCADOLIBREQAD_APP_PORT
+
+            - name: MERCADOLIBREQAD_DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: mercadolibreqad-config
+                  key: MERCADOLIBREQAD_DB_HOST
+
+            - name: MERCADOLIBREQAD_DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: mercadolibreqad-config
+                  key: MERCADOLIBREQAD_DB_NAME
+
+            - name: MERCADOLIBREQAD_DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: mercadolibreqad-config
+                  key: MERCADOLIBREQAD_DB_PORT
+
+            - name: MERCADOLIBREQAD_DB_TIMEZONE
+              valueFrom:
+                configMapKeyRef:
+                  name: mercadolibreqad-config
+                  key: MERCADOLIBREQAD_DB_TIMEZONE
+
+            - name: MERCADOLIBREQAD_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mercadolibreqad-secret
+                  key: MERCADOLIBREQAD_DB_PASSWORD
+
+            - name: MERCADOLIBREQAD_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mercadolibreqad-secret
+                  key: MERCADOLIBREQAD_DB_USERNAME
+      imagePullSecrets:
+        - name: acr-secret
