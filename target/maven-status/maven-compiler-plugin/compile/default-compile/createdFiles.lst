@@ -1,7 +1,11 @@
 com\example\springboot\email\EmailBody.class
 com\example\springboot\email\EmailService.class
+<<<<<<< HEAD
 com\example\springboot\test\ApplicationTest.class
+=======
+>>>>>>> f6042162237e248e9c7fa56a91313e66bbd9f372
 com\example\springboot\Application.class
+com\example\springboot\test\ApplicationTest.class
 com\example\springboot\email\EmailPort.class
 com\example\springboot\entity\Email.class
 com\example\springboot\repository\EmailRepository.class

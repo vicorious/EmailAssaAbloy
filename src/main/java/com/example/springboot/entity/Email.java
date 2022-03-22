@@ -5,6 +5,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
@@ -27,7 +28,10 @@ public class Email implements Serializable{
     @Column(name = "n_Origen")
     private String from;
 
-
+    public Email() {
+    	
+    }
+    
     public Email(String email, String content, String subject, String cc, String from) {
         this.email = email;
         this.content = content;
@@ -75,4 +79,13 @@ public class Email implements Serializable{
     public void setCc(String cc) {
         this.cc = cc;
     }
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+    
 }

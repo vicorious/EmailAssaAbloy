@@ -6,12 +6,17 @@ import com.example.springboot.utils.Constantes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
 import java.util.Date;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,7 +36,7 @@ public class EmailService implements EmailPort{
     }
 
     @Override
-    public List<Email> mails() throws Exception {
+    public List<Email> mails() throws Exception {    	    
         return (List<Email>) this.emailRepository.findAll();
     }
 
@@ -84,6 +89,12 @@ public class EmailService implements EmailPort{
 
 
     }
+
+	@Override
+	public Page<Email> listarEmail(String origen, Pageable pageable) throws Exception {
+		// TODO Auto-generated method stub
+		return this.emailRepository.listarNotificaciones(origen,pageable);
+	}
 
 
 
