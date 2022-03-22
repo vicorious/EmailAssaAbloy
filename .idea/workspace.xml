@@ -49,11 +49,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/repository/IntegrationBoomiOVEncabezadoRepository.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboot/utils/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/springboot/utils/Constantes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/springboot/email/EmailBody.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/email/EmailBody.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/springboot/email/EmailPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/email/EmailPort.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/springboot/email/EmailRest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/springboot/email/EmailService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/springboot/entity/Email.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/entity/Email.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/springboot/utils/Constantes.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/utils/Constantes.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>

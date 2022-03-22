@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -35,15 +36,27 @@ public class EmailService implements EmailPort{
     }
 
     @Override
-    public void sendComerssiaEmail(EmailBody emailBody)  throws Exception {
+    public void sendComerssiaEmail(EmailBody emailBody,
+                                   String traslado,
+                                   String origen,
+                                   String destino,
+                                   String fecha,
+                                   String numOrder)  throws Exception {
         emailBody.setContent(Constantes.HTML);
-        sendEmailTool(Constantes.COMERSSIA_EMAIL_DONE+emailBody.getContent(),emailBody.getEmail(), emailBody.getSubject(), emailBody.getCc(), "COMERSSIA");
+        String body = String.format(Constantes.COMERSSIA_EMAIL_DONE, traslado, origen, destino, fecha, numOrder, origen, destino).concat(Constantes.HTML);
+        sendEmailTool(body,emailBody.getEmail(), emailBody.getSubject(), emailBody.getCc(), "COMERSSIA");
+
     }
 
     @Override
-    public void sendFailedComerssiaEmail(EmailBody emailBody) throws Exception {
+    public void sendFailedComerssiaEmail(EmailBody emailBody,
+                                         String traslado,
+                                         String origen,
+                                         String fecha,
+                                         String destino) throws Exception {
         emailBody.setContent(Constantes.HTML);
-        sendEmailTool(Constantes.COMERSSIA_EMAIL_FAILED+emailBody.getContent(),emailBody.getEmail(), emailBody.getSubject(), emailBody.getCc(), "COMERSSIA");
+        String body = String.format(Constantes.COMERSSIA_EMAIL_FAILED, traslado, origen, fecha, emailBody.getContent(), origen, destino);
+        sendEmailTool(body,emailBody.getEmail(), emailBody.getSubject(), emailBody.getCc(), "COMERSSIA");
     }
 
     /**

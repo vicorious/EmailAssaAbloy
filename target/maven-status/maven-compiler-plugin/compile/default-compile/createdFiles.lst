@@ -1,7 +1,9 @@
 com\example\springboot\email\EmailBody.class
+com\example\springboot\email\EmailService.class
 com\example\springboot\test\ApplicationTest.class
 com\example\springboot\Application.class
 com\example\springboot\email\EmailPort.class
 com\example\springboot\entity\Email.class
 com\example\springboot\repository\EmailRepository.class
+com\example\springboot\email\EmailRest.class
 com\example\springboot\utils\Constantes.class

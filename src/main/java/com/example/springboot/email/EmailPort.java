@@ -10,7 +10,16 @@ public interface EmailPort {
 
     List<Email> mails() throws Exception;
 
-    void sendComerssiaEmail(EmailBody emailBody) throws Exception;
+    void sendComerssiaEmail(EmailBody emailBody,
+                            String traslado,
+                            String origen,
+                            String destino,
+                            String fecha,
+                            String numOrder) throws Exception;
 
-    void sendFailedComerssiaEmail(EmailBody emailBody) throws Exception;
+    void sendFailedComerssiaEmail(EmailBody emailBody,
+                                  String traslado,
+                                  String origen,
+                                  String fecha,
+                                  String destino) throws Exception;
 }
