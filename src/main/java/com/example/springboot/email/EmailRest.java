@@ -1,21 +1,25 @@
 package com.example.springboot.email;
 
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.*;
-=======
+
 import org.springframework.data.domain.Pageable;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
->>>>>>> f6042162237e248e9c7fa56a91313e66bbd9f372
+
+import java.util.List;
+import java.util.*;
+
+
+import org.json.*;
+
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+
+import com.example.springboot.utils.*;
+
+import com.example.springboot.entity.*;
 
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
@@ -49,22 +53,15 @@ public class EmailRest {
      */
     @PostMapping(value = "/enviarEmailComerssia")
     @ResponseBody
-    public String comerssiaNotificaciones(@RequestBody EmailBody emailBody,
-                                          String traslado,
-                                          String origen,
-                                          String destino,
-                                          String fecha,
-                                          String numOrder)
+    public String comerssiaNotificaciones(@RequestBody EmailBody emailBody)
     {
         try {
+            System.out.println(emailBody.getEmailDoneList());
             this.emailPort.sendComerssiaEmail(
                      emailBody,
-                     traslado,
-                     origen,
-                     destino,
-                     fecha,
-                     numOrder);
+                     emailBody.getEmailDoneList());
         }catch(Exception ex) {
+            ex.printStackTrace();
             this.enviarCorreoFallo(emailBody, ex);
             return "FAIL";
         }
@@ -78,19 +75,12 @@ public class EmailRest {
      */
     @PostMapping(value = "/enviarEmailErroresComerssia")
     @ResponseBody
-    public String comerssiaFalloNotificaciones(@RequestBody EmailBody emailBody,
-                                          String traslado,
-                                          String origen,
-                                          String destino,
-                                          String fecha)
+    public String comerssiaFalloNotificaciones(@RequestBody EmailBody emailBody)
     {
         try {
             this.emailPort.sendFailedComerssiaEmail(
                     emailBody,
-                    traslado,
-                    origen,
-                    fecha,
-                    destino);
+                    emailBody.getEmailDoneList());
         }catch(Exception ex) {
             this.enviarCorreoFallo(emailBody, ex);
             return "FAIL";
@@ -103,15 +93,52 @@ public class EmailRest {
      * Retornar todas las notificaciones en la ODS
      * @return
      */
-    @PostMapping(value = "/notificaciones")
+    @GetMapping(value = "/mailsp")
     @ResponseBody
-    public String mails()  {
-        try {
-            this.emailPort.mails();
+    public ResponseEntity<?> mails(String origen, Pageable pageable)  {
+        try {           
+            return new ResponseEntity<>(this.emailPort.listarEmail(origen, pageable), HttpStatus.OK); 
         }catch(Exception ex) {
-            return "FAIL";
+            return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping(value = "/mails")
+    @ResponseBody
+    public ResponseEntity<?> mails2(String origen, Pageable pageable)  {
+        try {           
+            return new ResponseEntity<>(this.emailPort.mails(pageable), HttpStatus.OK); 
+        }catch(Exception ex) {
+            return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+    @GetMapping(value = "/generateToken")
+    @ResponseBody
+    public ResponseEntity<?> generate()  {
+        try {           
+            Map<String, String> mapa = new HashMap<String,String>() {};
+            mapa.put("token", this.generateToken());
+            return new ResponseEntity<>(new JSONObject(mapa).toString(), HttpStatus.OK); 
+        }catch(Exception ex) {
+            ex.printStackTrace();
+            return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    private String generateToken() throws Exception{
+        JSONObject payload;
+        LocalDateTime ldt;
+
+        ldt = LocalDateTime.now().plusDays(90);
+        payload = new JSONObject("{\"sub\":\"1234\",\"aud\":[\"admin\"],"
+                + "\"exp\":" + ldt.toEpochSecond(ZoneOffset.UTC) + "}");
+
+        
+        return this.emailPort.saveToken(new JWebToken(payload).toString()).toString();
+    }
+        
 
     /**
      * Envia un correo plano con la informacion de la excepcion
@@ -138,7 +165,7 @@ public class EmailRest {
                                             String fecha, Exception ex){
         emailBody.setContent(ex.getMessage());
         try {
-            this.emailPort.sendFailedComerssiaEmail(emailBody, traslado, origen, fecha, destino);
+            this.emailPort.sendFailedComerssiaEmail(emailBody, emailBody.getEmailDoneList());
         } catch (Exception e) {
             this.enviarCorreoFallo(emailBody, ex);
         }

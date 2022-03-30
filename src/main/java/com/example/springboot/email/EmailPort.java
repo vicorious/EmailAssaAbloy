@@ -11,18 +11,16 @@ public interface EmailPort {
     
     void sendEmail(EmailBody emailBody) throws Exception;
 
-    public List<Email> mails() throws Exception;
+    Object saveToken(String token) throws Exception;
+
+    Page<Email> mails(Pageable pageable) throws Exception;
 
     void sendComerssiaEmail(EmailBody emailBody,
-                            String traslado,
-                            String origen,
-                            String destino,
-                            String fecha,
-                            String numOrder) throws Exception;
+                            List<EmailDone> emailDones) throws Exception;
 
     void sendFailedComerssiaEmail(EmailBody emailBody,
-                                  String traslado,
-                                  String origen,
-                                  String fecha,
-                                  String destino) throws Exception;
+                                  List<EmailDone> emailDones) throws Exception;
+
+                                  
+    Page<Email> listarEmail(String origen, Pageable pageable) throws Exception;
 }

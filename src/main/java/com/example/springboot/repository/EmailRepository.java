@@ -18,5 +18,10 @@ public interface EmailRepository extends CrudRepository<Email, Long>{
 			countQuery = ("SELECT * FROM Notificaciones where n_Origen LIKE ?1 "), 
 			nativeQuery = true)
 	Page<Email> listarNotificaciones(String origen, Pageable pageable);
+
+	@Query(value = "SELECT * FROM Notificaciones", 
+	countQuery = ("SELECT * FROM Notificaciones"), 
+	nativeQuery = true)
+	Page<Email> listarNotificacionesWithOut(Pageable pageable);
 	
 }

@@ -24,7 +24,7 @@ management:
 ---
 
 server:
-  port: ${MERCADOLIBREQAD_APP_PORT:8081}
+  port: ${MERCADOLIBREQAD_APP_PORT:8082}
 
 spring:
   profiles: development
@@ -73,10 +73,10 @@ spring:
         max-interval: 10000ms
         multiplier: 1
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: enslavement32@gmail.com
-    password: bbilxaaatitzxbok
+    host: relay.assaabloy.net
+    port: 25
+    username: noresponder@assaabloy.com 
+    password: Mx42Nbf7A6Hoz3YZi58R
     protocol: smtp
     tls: true
     properties.mail.smtp:
@@ -86,20 +86,6 @@ spring:
         writetimeout: 5000
         starttls.enable: true
         starttls.required: true
-  #mail:
-    #host: relay.assaabloy.net
-    #port: 25
-    #username: noresponder@assaabloy.com 
-    #password: Mx42Nbf7A6Hoz3YZi58R
-    #protocol: smtp
-    #tls: true
-    #properties.mail.smtp:
-        #auth: true
-        #connectiontimeout: 5000
-        #timeout: 5000
-        #writetimeout: 5000
-        #starttls.enable: true
-        #starttls.required: true
 
 bus:
   exchange_name: ${DEV_BUS_EXCHANGE_NAME}
@@ -113,7 +99,7 @@ bus:
 ---
 
 server:
-  port: ${MERCADOLIBREQAD_APP_PORT:8081}
+  port: ${MERCADOLIBREQAD_APP_PORT:8082}
 
 spring:
   profiles: production

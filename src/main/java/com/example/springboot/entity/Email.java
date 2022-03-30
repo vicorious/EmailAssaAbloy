@@ -8,6 +8,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Lob;
 
 import java.io.Serializable;
 @Entity(name="Notificaciones")
@@ -19,6 +20,7 @@ public class Email implements Serializable{
     private Integer id;
     @Column(name = "n_Destinatario")
     private String email;
+    @Lob
     @Column(name = "n_Contenido")
     private String content;
     @Column(name = "n_Asunto")
